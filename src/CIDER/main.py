@@ -41,13 +41,13 @@ matplotlib.rcParams['ps.fonttype'] = 42
 # Parameters
 parser = argparse.ArgumentParser()
 parser.add_argument('--nocuda', type=int, default=0, help='Disables CUDA training.')
-parser.add_argument('--type_y', type=str, default='death', choices=['confirmed', 'death'])
+parser.add_argument('--type_y', type=str, default='confirmed', choices=['confirmed', 'death'])
 
 parser.add_argument('--start_time', type=str, default='2020-01-22')  # start time: XXXX-XX-XX
 parser.add_argument('--end_time', type=str, default='2020-12-31')  # start time: XXXX-XX-XX
 parser.add_argument('--time_interval', type=int, default=15, help='interval between time steps (days)')
 
-parser.add_argument('--type_net', type=str, default='mob', choices=['dist', 'mob', 'no'])
+parser.add_argument('--type_net', type=str, default='dist', choices=['dist', 'mob', 'no'])
 parser.add_argument('--history', type=bool, default=True, help='use historical information or not')
 
 parser.add_argument('--beta', type=float, default= 1, help='weight of treatment prediction loss.')
