@@ -41,13 +41,13 @@ matplotlib.rcParams['ps.fonttype'] = 42
 # Parameters
 parser = argparse.ArgumentParser()
 parser.add_argument('--nocuda', type=int, default=0, help='Disables CUDA training.')
-parser.add_argument('--type_y', type=str, default='confirmed', choices=['confirmed', 'death'])
+parser.add_argument('--type_y', type=str, default='death', choices=['confirmed', 'death'])
 
 parser.add_argument('--start_time', type=str, default='2020-01-22')  # start time: XXXX-XX-XX
 parser.add_argument('--end_time', type=str, default='2020-12-31')  # start time: XXXX-XX-XX
 parser.add_argument('--time_interval', type=int, default=15, help='interval between time steps (days)')
 
-parser.add_argument('--type_net', type=str, default='dist', choices=['dist', 'mob', 'no'])
+parser.add_argument('--type_net', type=str, default='mob', choices=['dist', 'mob', 'no'])
 parser.add_argument('--history', type=bool, default=True, help='use historical information or not')
 
 parser.add_argument('--beta', type=float, default= 1, help='weight of treatment prediction loss.')
@@ -211,12 +211,7 @@ def train(epochs, x, adj_dense_list, treat_his, treat_cur, y, y_hist, idx_trn, i
 
             print('Epoch: {:04d}'.format(k + 1),
                   'loss_train: {:.4f}'.format(loss_train.item()),
-                  'loss_y_trn: {:.4f}'.format(loss_y_trn.item()),
-                  'acc_train: {:.4f}'.format(acc_ave_train.item()),
-                  'loss_test: {:.4f}'.format(loss_test.item()),
-                  'loss_y_tst: {:.4f}'.format(loss_y_tst.item()),
-                  'rmse_test_nonorm: {:.4f}'.format(loss_y_test_nonorm.item()),
-                  'acc_test: {:.4f}'.format(acc_ave_test.item())
+                  'loss_test: {:.4f}'.format(loss_test.item())
                   )
             model.train()
 
@@ -276,7 +271,7 @@ def test(x, adj_dense_list, treat_his, treat_cur, y, y_hist, idx_tst, model):
     num_pos = torch.sum(ite > 0)
     num_neg = torch.sum(ite < 0)
 
-    print('num_pos: ', num_pos, ' neg:', num_neg)
+    # print('num_pos: ', num_pos, ' neg:', num_neg)
     # print('ave_ite_time:', ave_ite_time)
 
     return ave_ite_time, ite
@@ -289,7 +284,6 @@ if __name__ == '__main__':
     policy_micro = {"SD": [
                            None,
                            "Food and Drink",
-                           "Childcare (K-12)",
                            "Gatherings"
                         ],
                     "RO": [
@@ -300,8 +294,6 @@ if __name__ == '__main__':
                            "Food and Drink"
                            ],
                     "MA": [
-                        None,
-                        'Mandate Face Mask Use By All Individuals In Public Facing Businesses',
                         "Food and Drink",
                         "Phase 2"
                         ]
