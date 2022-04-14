@@ -72,7 +72,7 @@ parser.add_argument('--n_layers_gcn', type=int, default=1)
 parser.add_argument('--n_out', type=int, default=1)
 parser.add_argument('--dropout', type=float, default=0.5)
 parser.add_argument('--P', type=int, default=3)
-parser.add_argument('--encoder_type', type=str, default='gcn')  # gcn, gat
+parser.add_argument('--encoder_type', type=str, default='gcn')  
 
 parser.add_argument('--wass', type=float, default=1e-4)
 
