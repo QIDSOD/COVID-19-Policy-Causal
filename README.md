@@ -1,6 +1,6 @@
 # CIDER-WWW22:  
 
-Code for the WSDM 2022 paper [*Assessing the Causal Impact of COVID-19 Related Policies on Outbreak Dynamics: A Case Study in the US*.](https://arxiv.org/pdf/2106.01315.pdf)
+Code for the WWW 2022 paper [*Assessing the Causal Impact of COVID-19 Related Policies on Outbreak Dynamics: A Case Study in the US*.](https://arxiv.org/pdf/2106.01315.pdf)
 
 ## Environment
 ```
